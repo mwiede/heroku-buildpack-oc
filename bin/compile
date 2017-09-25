@@ -26,9 +26,6 @@ echo "removed archive."
 
 echo "-----> Adding oc script"
 
-ROOT_DIR=$(dirname $0)/../
-BUILD_DIR=$1
-
 [ ! -d $BUILD_DIR/.profile.d ] && mkdir $BUILD_DIR/.profile.d
 
 cat << EOF > $BUILD_DIR/.profile.d/oc.sh
