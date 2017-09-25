@@ -15,6 +15,9 @@ ENV_DIR=$3
 
 cd $BUILD_DIR
 
+OC_HOME=.oc-cli
+mkdir -p .oc-cli
+
 echo -n "-----> Installing openshift CLI... "
 curl -O https://mirror.openshift.com/pub/openshift-v3/clients/3.6.173.0.7/linux/oc.tar.gz
 echo "downloaded."
@@ -29,6 +32,6 @@ echo "-----> Adding oc script"
 [ ! -d $BUILD_DIR/.profile.d ] && mkdir $BUILD_DIR/.profile.d
 
 cat << EOF > $BUILD_DIR/.profile.d/oc.sh
-export OC_HOME=${BUILD_DIR}
-$OC_HOME/oc version
+export OC_HOME=${OC_HOME}
+\$OC_HOME/oc version
 EOF
