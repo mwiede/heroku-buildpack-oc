@@ -30,5 +30,5 @@ echo "-----> Adding oc script"
 
 cat << EOF > $BUILD_DIR/.profile.d/oc.sh
 export OC_HOME=${BIN_DIR}
-$JBOSS_HOME/oc version
+$OC_HOME/oc version
 EOF
