@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+# fail fast
+set -e
+
+BP_DIR=$(cd $(dirname $0)/..; pwd) # absolute path
+BIN_DIR=$BP_DIR/bin
+
+# parse args
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+
+cd $BIN_DIR
+
+echo -n "-----> Installing openshift CLI... "
+curl -O https://mirror.openshift.com/pub/openshift-v3/clients/3.6.173.0.7/linux/oc.tar.gz
+echo "downloaded."
+tar xf oc.tar.gz
+echo "extracted."
+rm oc.tar.gz
+echo "removed archive."
+
+
+echo "-----> Adding oc script"
+
+ROOT_DIR=$(dirname $0)/../
+BUILD_DIR=$1
+
+[ ! -d $BUILD_DIR/.profile.d ] && mkdir $BUILD_DIR/.profile.d
+
+cat << EOF > $BUILD_DIR/.profile.d/oc.sh
+export OC_HOME=${BIN_DIR}
+$JBOSS_HOME/oc version
+EOF
