@@ -23,6 +23,8 @@ curl -O https://mirror.openshift.com/pub/openshift-v3/clients/3.6.173.0.7/linux/
 echo "downloaded."
 tar xf oc.tar.gz
 echo "extracted."
+mv oc $OC_HOME
+echo "moved."
 rm oc.tar.gz
 echo "removed archive."
 
@@ -31,7 +33,4 @@ echo "-----> Adding oc script"
 
 [ ! -d $BUILD_DIR/.profile.d ] && mkdir $BUILD_DIR/.profile.d
 
-cat << EOF > $BUILD_DIR/.profile.d/oc.sh
-export OC_HOME=${OC_HOME}
-\$OC_HOME/oc version
-EOF
+cp -a $ROOT_DIR/oc.sh $BUILD_DIR/.profile.d/
