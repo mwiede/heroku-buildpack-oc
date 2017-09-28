@@ -33,4 +33,4 @@ echo "-----> Adding oc script"
 
 [ ! -d $BUILD_DIR/.profile.d ] && mkdir $BUILD_DIR/.profile.d
 
-cp -a $ROOT_DIR/oc.sh $BUILD_DIR/.profile.d/
+cp -a $BP_DIR/oc.sh $BUILD_DIR/.profile.d/
