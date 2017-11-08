@@ -27,7 +27,8 @@ function login {
 
 function spawn_tunnel {
   while true; do
-    log "start port-forward"
+    OC_POD_NAME=$(oc get pod | grep -Eo "$OC_POD_NAME[^[:space:]]*")
+    log "start port-forward to pod ${OC_POD_NAME}"
     ${OC_HOME}/oc port-forward ${OC_POD_NAME} ${OC_LOCAL_PORT}:${OC_REMOTE_PORT}
     log "port-forward ended."
     sleep 5;
